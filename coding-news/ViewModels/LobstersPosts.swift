@@ -27,8 +27,6 @@ class LobstersPosts: ObservableObject {
 
   func getPosts() {
     self.currentlyLoading = true
-    print("test")
-    print(self.currentPage)
     cancellationToken = LobstersAPIClient.request("", page: self.currentPage)
       .mapError({ (error) -> Error in
         print(error)

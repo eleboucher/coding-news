@@ -1,0 +1,24 @@
+PODS:
+  - Introspect (0.1.0)
+  - SwiftLinkPreview (3.1.0)
+  - SwiftUIRefresh (0.0.3):
+    - Introspect (~> 0.1.0)
+
+DEPENDENCIES:
+  - SwiftLinkPreview (~> 3.1.0)
+  - SwiftUIRefresh
+
+SPEC REPOS:
+  trunk:
+    - Introspect
+    - SwiftLinkPreview
+    - SwiftUIRefresh
+
+SPEC CHECKSUMS:
+  Introspect: ad32f2b7b9e7ac2c008b9dfec3d5325fbd3660fa
+  SwiftLinkPreview: 3d924eeaae8d17410a827a4b37675713af1a0a8a
+  SwiftUIRefresh: ca6ae2718d25aad5dd68bbf5d2ae36ef6ade98bf
+
+PODFILE CHECKSUM: acdaddba94e0f7122fec6e9ba6deeccaadf5754c
+
+COCOAPODS: 1.9.1

@@ -8,7 +8,23 @@
 
 import SwiftUI
 import SwiftUIRefresh
+import SwiftLinkPreview
 
+
+struct LinkView: View {
+  @ObservedObject var linkFetcher: LinkFetcher
+
+  init(_ url: String, title: String) {
+    self.linkFetcher = LinkFetcher(url: url, title:title)
+  }
+
+  var body: some View {
+    HStack{
+      Text(linkFetcher.link.title)
+    }
+  }
+
+}
 
 struct NewsItemView: View {
   var lobstersPostElement: LobstersPostElement
@@ -18,20 +34,19 @@ struct NewsItemView: View {
       guard let url = URL(string: self.lobstersPostElement.url) else { return }
       UIApplication.shared.open(url)
     }) {
-      HStack{
-        if (self.lobstersPostElement.url != ""){
-          Image(systemName: "link")
-        } else {
-          Image(systemName: "doc.plaintext")
+      VStack(alignment: .leading){
+        HStack{
+          VStack(alignment: .leading) {
+            Text("\(lobstersPostElement.title)")
+              .font(.headline)
+            Text("\(lobstersPostElement.submitterUser.username)")
+              .font(.subheadline)
+          }.padding()
+
+        }.foregroundColor(Color.primary)
+        if (lobstersPostElement.url != "") {
+          LinkView(lobstersPostElement.url,title: lobstersPostElement.title)
         }
-        VStack(alignment: .leading) {
-          Text("\(lobstersPostElement.title)")
-            .font(.headline)
-          Text("\(lobstersPostElement.submitterUser.username)")
-            .font(.subheadline)
-        }.padding()
-          Spacer()
-          Image(systemName: "arrow.right")
       }.foregroundColor(Color.primary)
     }
   }

@@ -1,0 +1,4 @@
+${PODS_ROOT}/Target Support Files/Pods-coding-news-coding-newsUITests/Pods-coding-news-coding-newsUITests-frameworks.sh
+${BUILT_PRODUCTS_DIR}/Introspect/Introspect.framework
+${BUILT_PRODUCTS_DIR}/SwiftLinkPreview/SwiftLinkPreview.framework
+${BUILT_PRODUCTS_DIR}/SwiftUIRefresh/SwiftUIRefresh.framework
