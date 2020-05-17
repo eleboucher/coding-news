@@ -20,6 +20,8 @@
 		D4B353192470156C008B68B5 /* LobstersPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B353182470156C008B68B5 /* LobstersPost.swift */; };
 		D4B353202470237E008B68B5 /* LobstersPosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3531F2470237E008B68B5 /* LobstersPosts.swift */; };
 		D4B3532624703129008B68B5 /* SwiftUIRefresh in Frameworks */ = {isa = PBXBuildFile; productRef = D4B3532524703129008B68B5 /* SwiftUIRefresh */; };
+		D4B3532A24715056008B68B5 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3532924715056008B68B5 /* APIClient.swift */; };
+		D4B3532C247150C8008B68B5 /* LobstersAPIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4B3532B247150C8008B68B5 /* LobstersAPIClient.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +60,8 @@
 		D4B3531624701424008B68B5 /* LobstersPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobstersPostView.swift; sourceTree = "<group>"; };
 		D4B353182470156C008B68B5 /* LobstersPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobstersPost.swift; sourceTree = "<group>"; };
 		D4B3531F2470237E008B68B5 /* LobstersPosts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobstersPosts.swift; sourceTree = "<group>"; };
+		D4B3532924715056008B68B5 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		D4B3532B247150C8008B68B5 /* LobstersAPIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LobstersAPIClient.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +113,7 @@
 		D4B352DB246FF810008B68B5 /* coding-news */ = {
 			isa = PBXGroup;
 			children = (
+				D4B3532824715037008B68B5 /* Network */,
 				D4B3531E2470236D008B68B5 /* ViewModels */,
 				D4B353112470113C008B68B5 /* Models */,
 				D4B352DC246FF810008B68B5 /* AppDelegate.swift */,
@@ -180,6 +185,15 @@
 				D4B3531F2470237E008B68B5 /* LobstersPosts.swift */,
 			);
 			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		D4B3532824715037008B68B5 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				D4B3532924715056008B68B5 /* APIClient.swift */,
+				D4B3532B247150C8008B68B5 /* LobstersAPIClient.swift */,
+			);
+			path = Network;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -322,6 +336,8 @@
 				D4B352DD246FF810008B68B5 /* AppDelegate.swift in Sources */,
 				D4B353192470156C008B68B5 /* LobstersPost.swift in Sources */,
 				D4B3531724701424008B68B5 /* LobstersPostView.swift in Sources */,
+				D4B3532C247150C8008B68B5 /* LobstersAPIClient.swift in Sources */,
+				D4B3532A24715056008B68B5 /* APIClient.swift in Sources */,
 				D4B3531024700EEC008B68B5 /* SiteRow.swift in Sources */,
 				D4B353202470237E008B68B5 /* LobstersPosts.swift in Sources */,
 				D4B352DF246FF810008B68B5 /* SceneDelegate.swift in Sources */,

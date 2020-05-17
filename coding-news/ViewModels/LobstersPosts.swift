@@ -7,12 +7,13 @@
 //
 
 import Foundation
-
+import Combine
 
 class LobstersPosts: ObservableObject {
-  private final var urlBase = "https://lobste.rs/?format=json&page="
 
-  @Published var lobstersPosts = [LobstersPostElement]()
+
+  @Published var lobstersPosts: [LobstersPostElement] = []
+  var cancellationToken: AnyCancellable?
 
   // Needed for loading data
   var currentPage = 1
@@ -25,18 +26,28 @@ class LobstersPosts: ObservableObject {
   }
 
   func getPosts() {
-    let urlString = "\(urlBase)\(currentPage)"
-    let url = URL(string: urlString)!
-    var request = URLRequest(url: url)
-    request.httpMethod = "GET"
+    self.currentlyLoading = true
+    print("test")
+    print(self.currentPage)
+    cancellationToken = LobstersAPIClient.request("", page: self.currentPage)
+      .mapError({ (error) -> Error in
+        print(error)
+        return error
+      })
+      .sink(receiveCompletion: { _ in },
+            receiveValue: {
+              for post in $0 {
+                self.lobstersPosts.append(post)
+              }
+              self.doneLoading = ($0.count == 0)
+              self.currentPage += 1
+              self.currentlyLoading = false
+      })
 
-    let task = URLSession.shared.dataTask(with: request, completionHandler: parseFromResponse)
-    currentlyLoading = true
-    task.resume()
   }
 
   func shouldLoadMore(_ post: LobstersPostElement) -> Bool {
-    if doneLoading || currentlyLoading {
+    if self.doneLoading || self.currentlyLoading {
       return false
     }
     if let last = self.lobstersPosts.last {
@@ -47,39 +58,7 @@ class LobstersPosts: ObservableObject {
 
   func refresh() {
     self.currentPage = 1
+    self.lobstersPosts = []
     self.getPosts()
-  }
-
-  func parseFromResponse(data: Data?, urlResponse: URLResponse?, error: Error?){
-    guard error == nil else {
-      print("\(error!)")
-      DispatchQueue.main.async {
-        self.currentlyLoading = false
-      }
-      return
-    }
-
-    guard let content = data else {
-      print("No data")
-      DispatchQueue.main.async {
-        self.currentlyLoading = false
-      }
-      return
-    }
-
-    let decoder = JSONDecoder()
-    do{
-      let posts = try decoder.decode([LobstersPostElement].self, from: content)
-      DispatchQueue.main.async {
-        for post in posts {
-          self.lobstersPosts.append(post)
-        }
-        self.currentPage += 1
-        self.doneLoading = (posts.count == 0)
-        self.currentlyLoading = false
-      }
-    } catch{
-      print(error)
-    }
   }
 }
